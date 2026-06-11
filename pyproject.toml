@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "datasets",
+    "datasets>=2.16.0",
     "gradio",
     "sacrebleu",
     "torch>=2.5.1",

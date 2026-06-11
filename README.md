@@ -1,3 +1,13 @@
+---
+title: Artha ML
+emoji: 🌍
+colorFrom: blue
+colorTo: green
+sdk: gradio
+app_file: app.py
+pinned: false
+---
+
 # ArthaML — Kannada-English Neural Machine Translation
 
 ArthaML is an open-source, custom-built Neural Machine Translation (NMT) system for translating English to Kannada. Built entirely from scratch using PyTorch, the system implements a classic Sequence-to-Sequence (Seq2Seq) architecture enhanced with Bahdanau (Additive) Attention.

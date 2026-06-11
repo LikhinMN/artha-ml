@@ -14,9 +14,11 @@ def main():
     print("Loading vocabularies...")
     vocab_en = Vocabulary("English")
     vocab_en.load(os.path.join(project_root, 'data/processed/vocab_en.json'))
+    print(f"Loaded English vocab size: {len(vocab_en.word2idx)}")
     
     vocab_kn = Vocabulary("Kannada")
     vocab_kn.load(os.path.join(project_root, 'data/processed/vocab_kn.json'))
+    print(f"Loaded Kannada vocab size: {len(vocab_kn.word2idx)}")
     
     print("Creating dataset and dataloader...")
     data_path = os.path.join(project_root, 'data/processed/clean_50k.json')

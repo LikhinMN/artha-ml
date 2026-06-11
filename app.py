@@ -16,6 +16,10 @@ translator = Translator(model_path, vocab_en_path, vocab_kn_path, device)
 def translate_interface(text):
     start = time.time()
     translation = translator.translate(text)
+    
+    if "<UNK> <UNK> <UNK> <UNK>" in translation:
+        translation = "⚠️ Translation confidence is low — try simpler or shorter sentences."
+        
     elapsed = (time.time() - start) * 1000
     return translation, f"{elapsed:.2f} ms"
 
@@ -27,13 +31,14 @@ demo = gr.Interface(
         gr.Textbox(label="Time taken")
     ],
     title="ArthaML — Kannada-English Translator",
-    description="Open-source neural machine translation built from scratch",
+    description="Open-source neural machine translation built from scratch. Best results with simple, everyday English sentences under 20 words.",
     examples=[
         ["Hello, how are you?"],
         ["The weather is beautiful today."],
-        ["I love learning new languages."],
-        ["Technology is changing the world."],
-        ["Education is the key to success."]
+        ["Education is the key to success."],
+        ["I love my family."],
+        ["India is a great country."],
+        ["The train arrives at six o'clock."]
     ]
 )
 

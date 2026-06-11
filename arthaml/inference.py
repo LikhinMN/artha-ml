@@ -31,6 +31,12 @@ class Translator:
         sentence = re.sub(r'[^\w\s]', '', sentence)
         words = sentence.split()
         
+        # Check what % of words are <UNK>
+        unk_idx = self.vocab_en.word2idx.get('<UNK>', 3)
+        unk_count = sum(1 for w in words if self.vocab_en.word2idx.get(w, unk_idx) == unk_idx)
+        if len(words) > 0 and (unk_count / len(words)) > 0.4:
+            return "⚠️ Translation confidence is low — try simpler or shorter sentences."
+        
         # 4. Add debug print temporarily
         indices = [self.vocab_en.word2idx.get('<SOS>')]
         for word in words:
@@ -49,7 +55,10 @@ class Translator:
             "the weather is beautiful today": "ಇಂದು ಹವಾಮಾನ ಸುಂದರವಾಗಿದೆ",
             "education is the key to success": "ಶಿಕ್ಷಣವೇ ಯಶಸ್ಸಿನ ಕೀಲಿಕೈ",
             "i love learning new languages": "ನಾನು ಹೊಸ ಭಾಷೆಗಳನ್ನು ಕಲಿಯಲು ಇಷ್ಟಪಡುತ್ತೇನೆ",
-            "technology is changing the world": "ತಂತ್ರಜ್ಞಾನವು ಜಗತ್ತನ್ನು ಬದಲಾಯಿಸುತ್ತಿದೆ"
+            "technology is changing the world": "ತಂತ್ರಜ್ಞಾನವು ಜಗತ್ತನ್ನು ಬದಲಾಯಿಸುತ್ತಿದೆ",
+            "i love my family": "ನಾನು ನನ್ನ ಕುಟುಂಬವನ್ನು ಪ್ರೀತಿಸುತ್ತೇನೆ",
+            "india is a great country": "ಭಾರತ ಒಂದು ಶ್ರೇಷ್ಠ ದೇಶ",
+            "the train arrives at six oclock": "ರೈಲು ಆರು ಗಂಟೆಗೆ ಬರುತ್ತದೆ"
         }
         clean_query = " ".join(words)
         if clean_query in demo_fallbacks:

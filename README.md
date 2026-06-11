@@ -6,6 +6,13 @@ colorTo: green
 sdk: gradio
 app_file: app_hf.py
 pinned: false
+description: Open-source English-to-Kannada Neural Machine Translation system built from scratch.
+tags:
+  - machine-translation
+  - nlp
+  - pytorch
+  - kannada
+  - seq2seq
 ---
 
 # 🌍 ArthaML
